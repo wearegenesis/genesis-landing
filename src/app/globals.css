@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* Tokens base (LIGHT) */
+:root {
+  --background: #ffffff;
+  --foreground: #0b0b0b;
+
+  --genesis-orange: #e26e37;
+
+  /* panel/transparencias */
+  --glass: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(0, 0, 0, 0.12);
+}
+
+/* Tokens (DARK) */
+html.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+
+  --glass: rgba(0, 0, 0, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.14);
+}
+
+/* Tailwind v4 theme bridge */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-genesis-orange: var(--genesis-orange);
+
+  /* ✅ como antes */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Chips (pills) del hero */
+.genesis-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(237, 237, 237, 0.78);
+  font-size: 12.5px;
+  line-height: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Light mode: chips más claros y elegantes */
+html:not(.dark) .genesis-chip {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.65);
+  color: rgba(10, 10, 10, 0.72);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* Puntito naranja dentro (opcional y muy visual) */
+.genesis-chip::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(226, 110, 55, 0.95);
+  box-shadow: 0 0 18px rgba(226, 110, 55, 0.35);
+}
+
+/* Animación flotación sutil (solo si el usuario permite animaciones) */
+@keyframes genesisChipFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .genesis-float-1 {
+    animation: genesisChipFloat 4.6s ease-in-out infinite;
+  }
+  .genesis-float-2 {
+    animation: genesisChipFloat 5.2s ease-in-out infinite;
+    animation-delay: 0.25s;
+  }
+  .genesis-float-3 {
+    animation: genesisChipFloat 5.8s ease-in-out infinite;
+    animation-delay: 0.45s;
+  }
+}
+
+@keyframes ribbonMove {
+  0% {
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px) scale(1.02);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0px) scale(1);
+  }
+}
