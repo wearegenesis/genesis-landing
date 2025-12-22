@@ -116,3 +116,57 @@ html:not(.dark) .genesis-chip {
     transform: translateX(-50%) translateY(0px) scale(1);
   }
 }
+
+@keyframes genesisFloatA {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes genesisFloatB {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes genesisFloatC {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.genesis-float-card-1 {
+  animation: genesisFloatA 10s ease-in-out infinite;
+}
+.genesis-float-card-2 {
+  animation: genesisFloatB 12s ease-in-out infinite;
+}
+.genesis-float-card-3 {
+  animation: genesisFloatC 11s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .genesis-float-card-1,
+  .genesis-float-card-2,
+  .genesis-float-card-3 {
+    animation: none !important;
+  }
+}
