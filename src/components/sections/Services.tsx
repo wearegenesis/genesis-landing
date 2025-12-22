@@ -1,3 +1,4 @@
+import React from "react";
 import ServicesCalculator from "./ServicesCalculator";
 
 function IconChat() {
@@ -114,14 +115,14 @@ function ServiceCard({
     >
       {/* marco “premium” sutil */}
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-[radial-gradient(70%_70%_at_50%_0%,rgba(244,121,32,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(70%_70%_at_50%_0%,rgba(226,110,55,0.16),transparent_60%)]" />
       </div>
 
       {/* zona visual */}
       <div className="relative p-5">
         <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-background/30">
           <div className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:14px_14px]" />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(244,121,32,0.10),transparent_55%,rgba(244,121,32,0.06))]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(226,110,55,0.10),transparent_55%,rgba(226,110,55,0.06))]" />
           <div className="flex aspect-[16/9] items-center justify-center text-foreground/80">
             <div className="flex items-center justify-center rounded-2xl border border-foreground/10 bg-background/40 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
               {icon}
@@ -132,17 +133,21 @@ function ServiceCard({
 
       {/* texto */}
       <div className="px-6 pb-6">
-        <h3 className="text-lg font-semibold tracking-tight text-foreground">
+        {/* ✅ título menos blanco (gris claro) */}
+        <h3 className="text-[15px] md:text-[16px] font-semibold tracking-[-0.01em] text-foreground/88">
           {title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-foreground/65">
+
+        {/* ✅ descripción más “muted” */}
+        <p className="mt-2 text-[14px] md:text-[15px] leading-relaxed genesis-muted">
           {description}
         </p>
 
-        <ul className="mt-4 space-y-2 text-sm text-foreground/70">
+        {/* ✅ bullets todavía un pelín más suaves */}
+        <ul className="mt-4 space-y-2 text-[13.5px] md:text-[14px] genesis-muted-2">
           {bullets.map((b) => (
             <li key={b} className="flex gap-2">
-              <span className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-genesis-orange/80" />
+              <span className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-genesis-orange/85" />
               <span>{b}</span>
             </li>
           ))}
@@ -157,10 +162,11 @@ export default function Services() {
     <section id="services" className="relative py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
+          {/* ✅ título principal no tan blanco */}
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground/92 md:text-5xl">
             Cómo te ayudamos
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-foreground/60 md:text-base">
+          <p className="mt-3 text-[15px] md:text-[16px] leading-relaxed genesis-muted">
             Automatizamos la atención al cliente, reducimos tareas repetitivas y
             montamos landing pages que convierten. Todo integrado, todo medible.
           </p>
@@ -204,7 +210,6 @@ export default function Services() {
           />
         </div>
 
-        {/* bloque ahorro: original (no clon Naxia) */}
         <ServicesCalculator />
       </div>
     </section>
