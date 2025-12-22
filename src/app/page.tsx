@@ -1,5 +1,5 @@
-import Header from "@/ui/Header";
-import ThemeToggle from "@/components/ThemeToggle";
+import Header from "@/components/sections/Header";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import Hero from "@/components/sections/Hero";
 
 export default function Home() {

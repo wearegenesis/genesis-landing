@@ -1,4 +1,4 @@
-import HeroAccent from "../backgrounds/HeroAccent";
+import HeroAccent from "../ui/backgrounds/HeroAccent";
 
 export default function Hero() {
   return (

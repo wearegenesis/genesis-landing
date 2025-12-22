@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Brand from "@/ui/Brand";
+import Brand from "../ui/Brand";
 
 const nav = [
   { href: "#services", label: "Servicios" },
