@@ -1,36 +1,11 @@
 import React from "react";
 import ServicesCalculator from "./ServicesCalculator";
 
-function IconChat() {
-  return (
-    <svg
-      width="26"
-      height="26"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M20 12c0 4.418-3.582 8-8 8-1.25 0-2.433-.287-3.487-.798L4 20l.94-3.132A7.962 7.962 0 0 1 4 12c0-4.418 3.582-8 8-8s8 3.582 8 8Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M8 12h8M8 9h5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 function IconAutomation() {
   return (
     <svg
-      width="26"
-      height="26"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
@@ -57,159 +32,89 @@ function IconAutomation() {
   );
 }
 
-function IconWeb() {
+function Bullet({ children }: { children: React.ReactNode }) {
   return (
-    <svg
-      width="26"
-      height="26"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-11Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M4 8h16"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7 6.2h.01M9.2 6.2h.01M11.4 6.2h.01"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-type CardProps = {
-  title: string;
-  description: string;
-  bullets: string[];
-  icon: React.ReactNode;
-  floatClass?: string;
-};
-
-function ServiceCard({
-  title,
-  description,
-  bullets,
-  icon,
-  floatClass,
-}: CardProps) {
-  return (
-    <article
-      className={[
-        "group relative overflow-hidden rounded-3xl border border-foreground/10",
-        "bg-background/25 backdrop-blur-xl",
-        "shadow-[0_18px_80px_rgba(0,0,0,0.25)]",
-        "transition-transform duration-300 will-change-transform",
-        "hover:-translate-y-1",
-        floatClass ?? "",
-      ].join(" ")}
-    >
-      {/* marco “premium” sutil */}
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div className="absolute inset-0 bg-[radial-gradient(70%_70%_at_50%_0%,rgba(226,110,55,0.16),transparent_60%)]" />
-      </div>
-
-      {/* zona visual */}
-      <div className="relative p-5">
-        <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-background/30">
-          <div className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:14px_14px]" />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(226,110,55,0.10),transparent_55%,rgba(226,110,55,0.06))]" />
-          <div className="flex aspect-[16/9] items-center justify-center text-foreground/80">
-            <div className="flex items-center justify-center rounded-2xl border border-foreground/10 bg-background/40 p-4 shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
-              {icon}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* texto */}
-      <div className="px-6 pb-6">
-        {/* ✅ título menos blanco (gris claro) */}
-        <h3 className="text-[15px] md:text-[16px] font-semibold tracking-[-0.01em] text-foreground/88">
-          {title}
-        </h3>
-
-        {/* ✅ descripción más “muted” */}
-        <p className="mt-2 text-[14px] md:text-[15px] leading-relaxed genesis-muted">
-          {description}
-        </p>
-
-        {/* ✅ bullets todavía un pelín más suaves */}
-        <ul className="mt-4 space-y-2 text-[13.5px] md:text-[14px] genesis-muted-2">
-          {bullets.map((b) => (
-            <li key={b} className="flex gap-2">
-              <span className="mt-[7px] h-1.5 w-1.5 flex-none rounded-full bg-genesis-orange/85" />
-              <span>{b}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </article>
+    <li className="flex gap-3">
+      <span className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-genesis-orange/90 shadow-[0_0_18px_rgba(226,110,55,0.22)]" />
+      <span>{children}</span>
+    </li>
   );
 }
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24 md:py-28">
+    <section id="services" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
+        {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          {/* ✅ título principal no tan blanco */}
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground/92 md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
             Cómo te ayudamos
           </h2>
-          <p className="mt-3 text-[15px] md:text-[16px] leading-relaxed genesis-muted">
-            Automatizamos la atención al cliente, reducimos tareas repetitivas y
-            montamos landing pages que convierten. Todo integrado, todo medible.
+          <p className="mt-4 text-[16px] leading-relaxed text-foreground/78 md:text-[18px]">
+            Montamos automatización e IA aplicada para que tu negocio gane
+            velocidad: menos tareas repetitivas, más control y más conversión.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <ServiceCard
-            title="Agentes IA (WhatsApp / atención al cliente)"
-            description="Responde 24/7, filtra leads, agenda citas y guía al cliente sin depender de estar pegado al móvil."
-            bullets={[
-              "Atención al cliente automática 24/7",
-              "Derivación a humano cuando toca",
-              "Preguntas frecuentes + captación de datos",
-            ]}
-            icon={<IconChat />}
-            floatClass="genesis-float-card-1"
-          />
+        {/* Feature (solo Automatización por ahora) */}
+        <div className="mt-14 grid items-center gap-10 md:mt-16 md:grid-cols-[1.05fr_0.95fr]">
+          {/* Copy */}
+          <div>
+            <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              Automatización de procesos
+            </h3>
 
-          <ServiceCard
-            title="Automatización de procesos"
-            description="Presupuestos, facturas y flujos internos sin copiar/pegar. Menos errores, más velocidad."
-            bullets={[
-              "Presupuestos automáticos (ej. mudanzas/transportes)",
-              "Facturas y emails a un clic",
-              "Integración con tu stack",
-            ]}
-            icon={<IconAutomation />}
-            floatClass="genesis-float-card-2"
-          />
+            <p className="mt-4 text-[16px] leading-relaxed text-foreground/76 md:text-[17px]">
+              Presupuestos, facturas, seguimiento y operaciones internas
+              conectadas. Quitamos el copiar/pegar y dejamos un sistema que
+              escala sin fricción.
+            </p>
 
-          <ServiceCard
-            title="Webs que captan clientes"
-            description="Landing pages rápidas y claras, conectadas a tus automatizaciones para convertir visitas en ventas."
-            bullets={[
-              "Copy + estructura pensada para conversión",
-              "Formulario conectado a CRM/WhatsApp",
-              "SEO básico y analítica",
-            ]}
-            icon={<IconWeb />}
-            floatClass="genesis-float-card-3"
-          />
+            <ul className="mt-6 space-y-3 text-[15px] leading-relaxed text-foreground/78 md:text-[16px]">
+              <Bullet>
+                Presupuestos y documentos automáticos (sin errores tontos)
+              </Bullet>
+              <Bullet>Facturas, emails y tareas “a un clic”</Bullet>
+              <Bullet>
+                Integración con tu stack (Sheets / CRM / Email / ERP)
+              </Bullet>
+            </ul>
+          </div>
+
+          {/* Media */}
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-[28px] border border-foreground/10 bg-background/15 backdrop-blur-xl shadow-[0_22px_90px_rgba(0,0,0,0.35)]">
+              {/* halo sutil naranja */}
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute -left-24 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(226,110,55,0.18),transparent_60%)] blur-2xl" />
+                <div className="absolute -bottom-28 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(226,110,55,0.10),transparent_60%)] blur-2xl" />
+              </div>
+
+              {/* grid MUY suave */}
+              <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:18px_18px]" />
+
+              {/* Media */}
+              <div className="relative">
+                <img
+                  src="/AutomatizacionGif.gif"
+                  alt="Automatización de procesos"
+                  className="h-auto w-full object-cover"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-background/60" />
+              </div>
+
+              {/* Caption minimal (mejor) */}
+              <div className="relative border-t border-foreground/10 px-6 py-5">
+                <div className="mt-2 text-[15px] font-medium leading-relaxed text-foreground/80">
+                  Menos errores, menos trabajo manual y más velocidad en el día
+                  a día.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
+        {/* Calculadora */}
         <ServicesCalculator />
       </div>
     </section>
