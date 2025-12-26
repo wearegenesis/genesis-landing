@@ -28,7 +28,6 @@ html.dark {
 
   --color-genesis-orange: var(--genesis-orange);
 
-  /* ✅ como antes */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -37,45 +36,82 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Chips (pills) del hero */
+/* -----------------------------
+   Chips (pills) del hero — premium
+------------------------------ */
 .genesis-chip {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
+
+  padding: 11px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(237, 237, 237, 0.78);
-  font-size: 12.5px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.84);
+
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   line-height: 1;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+
+  transition: transform 180ms ease, background-color 180ms ease,
+    border-color 180ms ease, color 180ms ease;
+}
+
+@media (min-width: 768px) {
+  .genesis-chip {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (hover: hover) {
+  .genesis-chip:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.24);
+    color: rgba(255, 255, 255, 0.9);
+  }
 }
 
 /* Light mode: chips más claros y elegantes */
 html:not(.dark) .genesis-chip {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.65);
-  color: rgba(10, 10, 10, 0.72);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(10, 10, 10, 0.76);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
 }
 
-/* Puntito naranja dentro (opcional y muy visual) */
+@media (hover: hover) {
+  html:not(.dark) .genesis-chip:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.16);
+    color: rgba(10, 10, 10, 0.86);
+  }
+}
+
+/* Puntito naranja (más grande y menos “neón”) */
 .genesis-chip::before {
   content: "";
-  width: 7px;
-  height: 7px;
+  width: 9px;
+  height: 9px;
   border-radius: 999px;
   background: rgba(226, 110, 55, 0.95);
-  box-shadow: 0 0 18px rgba(226, 110, 55, 0.35);
+  box-shadow: 0 0 14px rgba(226, 110, 55, 0.28);
 }
 
 /* Animación flotación sutil (solo si el usuario permite animaciones) */
@@ -105,6 +141,7 @@ html:not(.dark) .genesis-chip {
   }
 }
 
+/* (Tuyas) animaciones varias */
 @keyframes ribbonMove {
   0% {
     transform: translateX(-50%) translateY(0px) scale(1);
@@ -114,5 +151,126 @@ html:not(.dark) .genesis-chip {
   }
   100% {
     transform: translateX(-50%) translateY(0px) scale(1);
+  }
+}
+
+@keyframes genesisFloatA {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes genesisFloatB {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes genesisFloatC {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.genesis-float-card-1 {
+  animation: genesisFloatA 10s ease-in-out infinite;
+}
+.genesis-float-card-2 {
+  animation: genesisFloatB 12s ease-in-out infinite;
+}
+.genesis-float-card-3 {
+  animation: genesisFloatC 11s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .genesis-float-card-1,
+  .genesis-float-card-2,
+  .genesis-float-card-3 {
+    animation: none !important;
+  }
+}
+
+/* Tipografía “muted” (para que no sea blanco puro) */
+.genesis-muted {
+  color: rgba(237, 237, 237, 0.72);
+}
+.genesis-muted-2 {
+  color: rgba(237, 237, 237, 0.6);
+}
+
+/* Light mode */
+html:not(.dark) .genesis-muted {
+  color: rgba(10, 10, 10, 0.68);
+}
+html:not(.dark) .genesis-muted-2 {
+  color: rgba(10, 10, 10, 0.58);
+}
+
+/* --- Scroll reveal (premium) --- */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  filter: blur(6px);
+  transition: opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0px);
+}
+
+/* Variantes */
+.reveal--fade {
+  transform: none;
+  filter: none;
+}
+.reveal--fade.is-in {
+  transform: none;
+  filter: none;
+}
+
+.reveal--left {
+  transform: translate3d(-18px, 0, 0);
+}
+.reveal--left.is-in {
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal--right {
+  transform: translate3d(18px, 0, 0);
+}
+.reveal--right.is-in {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Respeta Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
   }
 }

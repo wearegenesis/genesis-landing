@@ -79,10 +79,11 @@ export default function Header() {
   }, [mobileOpen]);
 
   const navLinkClass =
-    "relative text-sm text-foreground/70 transition-all duration-200 " +
-    "hover:text-foreground hover:-translate-y-[1px] " +
+    "relative text-sm md:text-[15px] font-medium tracking-[0.01em] " +
+    "text-foreground/78 transition-colors duration-200 " +
+    "hover:text-foreground " +
     "after:absolute after:left-0 after:-bottom-2 after:h-px after:w-0 " +
-    "after:bg-genesis-orange/70 after:transition-all after:duration-300 " +
+    "after:bg-genesis-orange/80 after:transition-all after:duration-200 " +
     "hover:after:w-full " +
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-genesis-orange/60 " +
     "focus-visible:ring-offset-2 focus-visible:ring-offset-background";
@@ -101,10 +102,13 @@ export default function Header() {
         ].join(" ")}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <Brand />
+          {/* Brand un pelín más “presencia” */}
+          <div className="text-foreground/90 hover:text-foreground transition-colors">
+            <Brand />
+          </div>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-7 md:flex">
+          <nav className="hidden items-center gap-8 md:flex">
             {nav.map((item) => (
               <a key={item.href} href={item.href} className={navLinkClass}>
                 {item.label}
@@ -118,10 +122,10 @@ export default function Header() {
             onClick={() => setMobileOpen((v) => !v)}
             className="
               md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full
-              border border-foreground/10 bg-background/60 text-foreground/80
+              border border-foreground/12 bg-[color:var(--glass)] text-foreground/80
               backdrop-blur
               transition-all duration-200
-              hover:border-foreground/20 hover:text-foreground hover:-translate-y-[1px]
+              hover:border-foreground/22 hover:text-foreground hover:-translate-y-[1px]
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-genesis-orange/60
               focus-visible:ring-offset-2 focus-visible:ring-offset-background
             "
@@ -154,7 +158,7 @@ export default function Header() {
         <div
           className={[
             "absolute left-1/2 top-[76px] w-[min(92vw,560px)] -translate-x-1/2",
-            "rounded-2xl border border-foreground/10 bg-[color:var(--glass)] backdrop-blur-xl",
+            "rounded-2xl border border-foreground/12 bg-[color:var(--glass)] backdrop-blur-xl",
             "shadow-[0_18px_60px_rgba(0,0,0,0.35)]",
             "transition-all duration-200",
             mobileOpen
@@ -170,7 +174,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="
                   group flex items-center justify-between rounded-xl px-4 py-3
-                  text-[15px] text-foreground/85
+                  text-[15px] font-medium tracking-[0.01em] text-foreground/86
                   transition-all duration-200
                   hover:bg-foreground/5 hover:text-foreground
                   active:scale-[0.99]
@@ -182,7 +186,7 @@ export default function Header() {
                   <span
                     className="
                       pointer-events-none absolute left-0 -bottom-2 h-px w-0
-                      bg-genesis-orange/60 transition-all duration-300
+                      bg-genesis-orange/70 transition-all duration-200
                       group-hover:w-full
                     "
                   />

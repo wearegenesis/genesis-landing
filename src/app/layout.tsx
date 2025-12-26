@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
 import { Geist, Geist_Mono } from "next/font/google";
+import GenesisBackground from "@/components/ui/backgrounds/GenesisBackground";
 
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
   display: "swap",
 });
-
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
@@ -30,6 +30,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="antialiased">
+        {/* Fondo global */}
+        <GenesisBackground />
         <Providers>{children}</Providers>
       </body>
     </html>
