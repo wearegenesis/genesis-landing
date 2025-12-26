@@ -1,12 +1,14 @@
 import React from "react";
 import ServicesCalculator from "./ServicesCalculator";
+import Reveal from "../ui/Reveal";
 
 function Bullet({ children }: { children: React.ReactNode }) {
+  // ✅ OJO: ya NO devolvemos <li>, devolvemos un contenedor
   return (
-    <li className="flex gap-3">
+    <div className="flex gap-3">
       <span className="mt-[9px] h-1.5 w-1.5 flex-none rounded-full bg-genesis-orange/90 shadow-[0_0_18px_rgba(226,110,55,0.22)]" />
       <span>{children}</span>
-    </li>
+    </div>
   );
 }
 
@@ -18,7 +20,7 @@ type FeatureProps = {
   gifAlt: string;
   caption: string;
   reverse?: boolean;
-  floatClass?: string; // <- para que flote el card del GIF como las pills
+  floatClass?: string;
 };
 
 function Feature({
@@ -31,6 +33,9 @@ function Feature({
   reverse,
   floatClass,
 }: FeatureProps) {
+  const textVariant: "left" | "right" = reverse ? "right" : "left";
+  const mediaVariant: "left" | "right" = reverse ? "left" : "right";
+
   return (
     <div
       className={[
@@ -42,58 +47,64 @@ function Feature({
       ].join(" ")}
     >
       {/* Copy */}
-      <div>
-        <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-          {title}
-        </h3>
+      <Reveal variant={textVariant} delayMs={40}>
+        <div>
+          <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+            {title}
+          </h3>
 
-        <p className="mt-4 text-[16px] leading-relaxed text-foreground/82 md:text-[17px]">
-          {description}
-        </p>
+          <p className="mt-4 text-[16px] leading-relaxed text-foreground/82 md:text-[17px]">
+            {description}
+          </p>
 
-        <ul className="mt-6 space-y-3 text-[15px] leading-relaxed text-foreground/82 md:text-[16px]">
-          {bullets.map((b, i) => (
-            <Bullet key={i}>{b}</Bullet>
-          ))}
-        </ul>
-      </div>
+          <ul className="mt-6 space-y-3 text-[15px] leading-relaxed text-foreground/82 md:text-[16px]">
+            {bullets.map((b, i) => (
+              <Reveal key={i} as="li" delayMs={140 + i * 80}>
+                <Bullet>{b}</Bullet>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
 
-      {/* Media (EL QUE FLOTA) */}
-      <div
-        className={["relative will-change-transform", floatClass ?? ""].join(
-          " "
-        )}
-      >
-        <div className="relative overflow-hidden rounded-[28px] border border-foreground/10 bg-background/15 backdrop-blur-xl shadow-[0_22px_90px_rgba(0,0,0,0.35)]">
-          {/* halo sutil naranja */}
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -left-24 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(226,110,55,0.18),transparent_60%)] blur-2xl" />
-            <div className="absolute -bottom-28 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(226,110,55,0.10),transparent_60%)] blur-2xl" />
-          </div>
+      {/* Media (flotando) */}
+      <Reveal variant={mediaVariant} delayMs={90}>
+        <div
+          className={["relative will-change-transform", floatClass ?? ""].join(
+            " "
+          )}
+        >
+          <div className="relative overflow-hidden rounded-[28px] border border-foreground/10 bg-background/15 backdrop-blur-xl shadow-[0_22px_90px_rgba(0,0,0,0.35)]">
+            {/* halo sutil naranja */}
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute -left-24 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(226,110,55,0.18),transparent_60%)] blur-2xl" />
+              <div className="absolute -bottom-28 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(226,110,55,0.10),transparent_60%)] blur-2xl" />
+            </div>
 
-          {/* grid MUY suave */}
-          <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:18px_18px]" />
+            {/* grid MUY suave */}
+            <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:18px_18px]" />
 
-          {/* Media */}
-          <div className="relative">
-            <img
-              src={gifSrc}
-              alt={gifAlt}
-              className="h-auto w-full object-cover"
-              loading="lazy"
-              draggable={false}
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-background/60" />
-          </div>
+            {/* Media */}
+            <div className="relative">
+              <img
+                src={gifSrc}
+                alt={gifAlt}
+                className="h-auto w-full object-cover"
+                loading="lazy"
+                draggable={false}
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-background/60" />
+            </div>
 
-          {/* Caption */}
-          <div className="relative border-t border-foreground/10 px-6 py-5">
-            <div className="text-[15px] font-medium leading-relaxed text-foreground/84">
-              {caption}
+            {/* Caption */}
+            <div className="relative border-t border-foreground/10 px-6 py-5">
+              <div className="text-[15px] font-medium leading-relaxed text-foreground/84">
+                {caption}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }
@@ -104,18 +115,24 @@ export default function Services() {
       <div className="mx-auto max-w-6xl px-6">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+          <Reveal
+            as="h2"
+            className="text-4xl font-semibold tracking-tight text-foreground md:text-6xl"
+          >
             Cómo te ayudamos
-          </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-foreground/82 md:text-[18px]">
+          </Reveal>
+
+          <Reveal
+            delayMs={90}
+            className="mt-4 text-[16px] leading-relaxed text-foreground/82 md:text-[18px]"
+          >
             Montamos automatización e IA aplicada para que tu negocio gane
             velocidad: menos tareas repetitivas, más control y más conversión.
-          </p>
+          </Reveal>
         </div>
 
         {/* FEATURES */}
         <div className="mt-16 space-y-20 md:mt-20 md:space-y-28">
-          {/* 1) Texto izq / GIF der */}
           <Feature
             title="Automatización de procesos"
             description="Presupuestos, facturas, seguimiento y operaciones internas conectadas. Quitamos el copiar/pegar y dejamos un sistema que escala sin fricción."
@@ -130,7 +147,6 @@ export default function Services() {
             floatClass="genesis-float-1"
           />
 
-          {/* 2) GIF izq / Texto der */}
           <Feature
             reverse
             title="Agentes IA (WhatsApp / atención al cliente)"
@@ -146,7 +162,6 @@ export default function Services() {
             floatClass="genesis-float-2"
           />
 
-          {/* 3) Texto izq / GIF der */}
           <Feature
             title="Webs que captan clientes"
             description="Landing pages rápidas y claras para convertir visitas en clientes, con formularios conectados y medición para optimizar."
@@ -163,9 +178,11 @@ export default function Services() {
         </div>
 
         {/* Calculadora */}
-        <div className="mt-20 md:mt-24">
-          <ServicesCalculator />
-        </div>
+        <Reveal delayMs={120}>
+          <div className="mt-20 md:mt-24">
+            <ServicesCalculator />
+          </div>
+        </Reveal>
       </div>
     </section>
   );
