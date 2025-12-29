@@ -231,12 +231,7 @@ export default function ServicesCalculator() {
               <div className="mt-5 grid gap-3">
                 <StatRow
                   label="Tiempo recuperado / mes"
-                  value={
-                    <>
-                      ~ {formatNumber(hoursPerMonth, 1)}{" "}
-                      <span className="text-foreground/55">h</span>
-                    </>
-                  }
+                  value={<>~ {formatNumber(hoursPerMonth, 1)} h</>}
                 />
                 <StatRow
                   label="Coste actual / semana"
@@ -244,12 +239,7 @@ export default function ServicesCalculator() {
                 />
                 <StatRow
                   label="Horas invertidas / semana"
-                  value={
-                    <>
-                      {formatNumber(hoursPerWeek, 1)}{" "}
-                      <span className="text-foreground/55">h</span>
-                    </>
-                  }
+                  value={<>{formatNumber(hoursPerWeek, 1)} h</>}
                 />
               </div>
 
