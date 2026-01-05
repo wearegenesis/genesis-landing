@@ -74,7 +74,10 @@ function TimelineCard() {
 
 export default function Process() {
   return (
-    <section id="process" className="relative pt-16 pb-24 md:pt-20 md:pb-28">
+    <section
+      id="process"
+      className="relative scroll-mt-28 pt-14 pb-14 md:scroll-mt-32 md:pt-18 md:pb-16"
+    >
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">

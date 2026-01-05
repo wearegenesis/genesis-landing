@@ -6,7 +6,6 @@ import Brand from "../ui/Brand";
 const nav = [
   { href: "#services", label: "Servicios" },
   { href: "#process", label: "Proceso" },
-  { href: "#about", label: "Nosotros" },
   { href: "#contact", label: "Contacto" },
 ];
 
